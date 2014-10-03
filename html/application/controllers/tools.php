@@ -15,7 +15,7 @@ class Tools extends CI_Controller {
 
             echo yaml_emit(
                 array(
-                    'classes' => $modules
+                    'classes' => array() //$modules
                 )
             );
         }

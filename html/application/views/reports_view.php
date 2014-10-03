@@ -3,7 +3,7 @@
     <dt class="text-info">Host</dt>
     <dd><?php echo $server; ?></dd>
 
-    <dt class="text-info">Transaction</dt>
+    <dt class="text-info">Transaction Reference</dt>
     <dd><?php echo $transaction; ?></dd>
 
     <dt class="text-info">Configuration Version</dt>
