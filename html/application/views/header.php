@@ -100,7 +100,8 @@
             <li<?php if ($last_crumb[0]=="Dashboard") echo " class=\"active\""; ?>><a href="/""><span>Dashboard</span> <i class="icon-screen2"></i></a></li>
             <li<?php if ($last_crumb[0]=="Nodes") echo " class=\"active\""; ?>><a href="/nodes/"><span>Nodes</span> <i class="icon-grid"></i></a></li>
             <li<?php if ($last_crumb[0]=="Reports") echo " class=\"active\""; ?>><a href="/reports/"><span>Reports</span> <i class="icon-insert-template"></i></a></li>
-            <li<?php if ($last_crumb[0]=="Factss") echo " class=\"active\""; ?>><a href="/facts/"><span>Facts</span> <i class="icon-question"></i></a></li>
+            <li<?php if ($last_crumb[0]=="Facts") echo " class=\"active\""; ?>><a href="/facts/"><span>Facts</span> <i class="icon-question"></i></a></li>
+            <li<?php if ($last_crumb[0]=="Modules") echo " class=\"active\""; ?>><a href="/modules/"><span>Modules</span> <i class="icon-puzzle"></i></a></li>
             <li<?php if ($last_crumb[0]=="Settings") echo " class=\"active\""; ?>><a href="/settings/"><span>Settings</span> <i class="icon-cogs"></i></a></li>
         </ul>
 

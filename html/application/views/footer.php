@@ -14,7 +14,14 @@
                 </div>
 
                 <div class="modal-body with-padding">
-                <pre id="debug" style="max-height: 450px;"><?php if (isset($debug)) echo $debug; else echo "No debug available."; ?></pre>
+                <pre id="debug" style="max-height: 450px;"><?php if (isset($debug)) {
+                        if (is_string($debug))
+                            echo $debug;
+                        else
+                            print_r($debug);
+                    } else
+                        echo "No debug available.";
+                    ?></pre>
                 </div>
 
                 <div class="modal-footer">
