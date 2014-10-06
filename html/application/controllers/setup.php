@@ -4,6 +4,7 @@ class Setup extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
+        $this->load->library('validations');
     }
 
 	public function index() {
@@ -11,11 +12,15 @@ class Setup extends CI_Controller {
             redirect('/');
         }
 
+        $validations = new Validations();
+        $failed_validations = $validations->check();
+
 		$this->load->view('header',array(
             'setup' => true
         ));
         $this->load->view('setup',array(
-            'base_url' => $this->config->item('base_url')
+            'base_url' => $this->config->item('base_url'),
+            'failed_validations' => $failed_validations
         ));
         $this->load->view('footer');
     }
@@ -25,7 +30,6 @@ class Setup extends CI_Controller {
             'setup' => true
         ));
         $this->load->view('setup_step2',array(
-            'title' => $this->input->get_post('title'),
             'base_url' => $this->input->get_post('base_url')
         ));
         $this->load->view('footer');
@@ -36,7 +40,6 @@ class Setup extends CI_Controller {
             'setup' => true
         ));
         $this->load->view('setup_step3',array(
-            'title' => $this->input->get_post('title'),
             'base_url' => $this->input->get_post('base_url'),
             'database_hostname' => $this->input->get_post('database_hostname'),
             'database_username' => $this->input->get_post('database_username'),
@@ -51,7 +54,6 @@ class Setup extends CI_Controller {
             'setup' => true
         ));
         $this->load->view('setup_finish',array(
-            'title' => $this->input->get_post('title'),
             'base_url' => $this->input->get_post('base_url'),
             'database_hostname' => $this->input->get_post('database_hostname'),
             'database_username' => $this->input->get_post('database_username'),

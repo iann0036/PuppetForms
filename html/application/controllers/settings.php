@@ -10,6 +10,8 @@ class Settings extends CI_Controller {
             'description' => "Settings..."
         ));
         $this->load->view('settings');
-        $this->load->view('footer');
+        $this->load->view('footer',array(
+            'debug' => ''
+        ));
     }
 }

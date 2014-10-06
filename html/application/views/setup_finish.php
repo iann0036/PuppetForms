@@ -5,7 +5,6 @@
     <div class="col-md-6">
         <br />
         <form action="/setup/commit/" role="form" method="post">
-            <input type="hidden" name="title" value="<?php echo $title; ?>" />
             <input type="hidden" name="base_url" value="<?php echo $base_url; ?>" />
             <input type="hidden" name="database_hostname" value="<?php echo $database_hostname; ?>" />
             <input type="hidden" name="database_username" value="<?php echo $database_username; ?>" />
@@ -17,7 +16,7 @@
 
 
             <div class="panel panel-default">
-                <div class="panel-heading"><h6 class="panel-title"><i class="icon-server"></i> Setup</h6></div>
+                <div class="panel-heading"><h6 class="panel-title"><i class="icon-enter3"></i> Setup</h6></div>
                 <div class="panel-body">
 
                     <div class="block-inner text-danger">

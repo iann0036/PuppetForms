@@ -37,11 +37,11 @@ foreach ($results_left as $result) {
         </div>
         <div class="panel-footer">
             <div class="pull-left">
-                <span><i class="icon-checkmark"></i> Available to download</span>
+                <span>Available to download</span>
             </div>
             <div class="pull-right">
                 <ul class="footer-icons-group">
-                    <li><a href="#"><i class="icon-download"></i>&nbsp;&nbsp;<span style="vertical-align: middle;">Download Module</span></a></li>
+                    <li><a onclick="installForge('<?php echo $result['owner']['username'].'-'.$result['name']; ?>',this)"><i class="icon-download"></i>&nbsp;&nbsp;<span style="vertical-align: middle;">Install Module</span></a></li>
                 </ul>
             </div>
         </div>
@@ -78,11 +78,11 @@ foreach ($results_right as $result) {
         </div>
         <div class="panel-footer">
             <div class="pull-left">
-                <span><i class="icon-checkmark"></i> Available to download</span>
+                <span>Available to download</span>
             </div>
             <div class="pull-right">
                 <ul class="footer-icons-group">
-                    <li><a href="#"><i class="icon-download"></i>&nbsp;&nbsp;<span style="vertical-align: middle;">Download Module</span></a></li>
+                    <li><a onclick="installForge('<?php echo $result['owner']['username'].'-'.$result['name']; ?>',this)"><i class="icon-download"></i>&nbsp;&nbsp;<span style="vertical-align: middle;">Install Module</span></a></li>
                 </ul>
             </div>
         </div>
@@ -93,3 +93,25 @@ foreach ($results_right as $result) {
 
 </div>
 </div>
+<script>
+    function installForge(module,dom) {
+        $.ajax({
+            type: "POST",
+            url: "/api/install_forge/",
+            data: {
+                module: module
+            }
+        }).done(function(msg) {
+            if (msg=="true") {
+                dom.removeAttribute('disabled');
+                dom.innerHTML = '<i class="icon-checkmark"></i>&nbsp;&nbsp;<span style="vertical-align: middle;">Installed</span>';
+            } else {
+                dom.innerHTML = '<i class="icon-warning"></i>&nbsp;&nbsp;<span style="vertical-align: middle;">Error during install</span>';
+            }
+        });
+
+        dom.removeAttribute('onclick');
+        dom.setAttribute('disabled','disabled');
+        dom.innerHTML = '<i class="icon-download"></i>&nbsp;&nbsp;<span style="vertical-align: middle;">Installing...</span>';
+    }
+</script>

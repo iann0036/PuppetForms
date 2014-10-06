@@ -361,4 +361,4 @@ $config['proxy_ips'] = '';
 /*
  * CUSTOM
  */
-$config['setup'] = true;
+$config['setup'] = false;

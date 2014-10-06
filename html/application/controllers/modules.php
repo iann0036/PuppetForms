@@ -24,6 +24,8 @@ class Modules extends CI_Controller {
     }
 
     public function search() {
+        $local_modules = $this->_getLocalModules();
+
         $search = $this->input->get_post('search');
 
         $results = $this->_getModules($search);
@@ -38,7 +40,7 @@ class Modules extends CI_Controller {
         ));
         $this->load->view('modules_search',array(
             'results' => $results,
-            'installed_modules' => $installed_modules
+            'local_modules' => $local_modules
         ));
         $this->load->view('footer',array(
             'debug' => $results
