@@ -14,7 +14,7 @@
 <h5>Installed Modules</h5>
     <?php
     foreach ($local_modules as $module) {
-        echo '<h6><a href="#">'.$module.'</a></h6>';
+        echo '<h6><a href="/modules/detail/'.$module.'/">'.$module.'</a></h6>';
     }
     ?>
 <br />

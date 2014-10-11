@@ -23,6 +23,55 @@ class Modules extends CI_Controller {
         $this->load->view('footer');
     }
 
+    private function _getClasses($module) {
+        $GLOBALS['module'] = $module;
+        $module_path = $this->puppet_config->getModulePath();
+        $GLOBALS['manifests_path'] = $module_path.DIRECTORY_SEPARATOR.$module.DIRECTORY_SEPARATOR."manifests";
+        $GLOBAL['classes'] = array();
+        function scanTopDir($dir) {
+            if (substr($dir,-1)!=DIRECTORY_SEPARATOR)
+                $dir.=DIRECTORY_SEPARATOR;
+            $manifest_files = array_diff(scandir($GLOBALS['manifests_path'].$dir), array('.', '..'));
+            foreach ($manifest_files as $file) {
+                if (is_dir($file)) {
+                    scanTopDir($dir.$file);
+                } else {
+                    $filepinfo = pathinfo($file);
+                    if ($filepinfo['extension'] == "pp") {
+                        $subdirpath = str_replace(DIRECTORY_SEPARATOR,"::",$dir);
+                        if ($filepinfo['filename'] == "init" && $dir==DIRECTORY_SEPARATOR)
+                            $GLOBAL['classes'][] = $GLOBALS['module'];
+                        elseif ($filepinfo['filename'] == "init") {
+                            $GLOBAL['classes'][] = $GLOBALS['module'] . "::" . substr($subdirpath,0,strlen($subdirpath)-2);
+                        } else
+                            $GLOBAL['classes'][] = $GLOBALS['module'] . "::" . $subdirpath . $filepinfo['filename'];
+                    }
+                }
+            }
+        }
+        scanTopDir('');
+
+        return $GLOBAL['classes'];
+    }
+
+    public function detail($module) {
+        $classes = $this->_getClasses($module);
+
+        $this->load->view('header',array(
+            'breadcrumbs' => array(
+                array("Home","/"),
+                array("Modules","/modules/"),
+                array($module,"/modules/".$module."/")
+            ),
+            'description' => "Details on the ".$module." module"
+        ));
+        $this->load->view('modules_detail',array(
+            'module' => $module,
+            'classes' => $classes
+        ));
+        $this->load->view('footer');
+    }
+
     public function search() {
         $local_modules = $this->_getLocalModules();
 

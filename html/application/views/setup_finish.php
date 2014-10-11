@@ -24,13 +24,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 control-label text-right">Title:</label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static"><?php echo $title; ?></p>
-                        </div>
-                    </div>
-                    <p>&nbsp;</p>
-                    <div class="form-group">
                         <label class="col-sm-4 control-label text-right">Base URL:</label>
                         <div class="col-sm-8">
                             <p class="form-control-static"><?php echo $base_url; ?></p>
